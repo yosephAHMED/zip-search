@@ -8,11 +8,18 @@ class ZipSearch extends Component {
     }
 
     componentDidMount() {
+        console.log(this.state.zipcode);
         axios.get("http://ctp-zip-api.herokuapp.com/zip/" + this.props.zipcode).then((response) => {
             const data = response.data;
 
             const newZipSearchObj = {
-                // assign in here
+                stateName: data.State,
+                cityName: data.City,
+                locationText: data.LocationText,
+                latitude: data.Lat,
+                longitude: data.Long,
+                population: data.EstimatedPopulation,
+                wages: data.TotalWages,
             };
 
             this.setState({ zip: newZipSearchObj });
@@ -27,8 +34,12 @@ class ZipSearch extends Component {
         } else {
             display = (
                 <>
+                    <h1>{this.state.locationText}</h1>
                     <ul>
-
+                        <li>State: {this.state.stateName}</li>
+                        <li>Location: ({this.state.latitude}, {this.state.longitude})</li>
+                        <li>Population (estimated): {this.state.population}</li>
+                        <li>Total Wages: {this.state.wages}</li>
                     </ul>
                 </>
             );
