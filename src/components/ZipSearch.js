@@ -64,6 +64,7 @@ class ZipSearch extends Component {
 
                 // changing state of variables according to API data
                 this.setState(newZipSearchObj);
+                console.log(this.state.population);
             }).catch((err) => console.log(err));
         }
     }
@@ -90,12 +91,19 @@ class ZipSearch extends Component {
                     {this.state.showInfo ?
                         <div>
                             <h1>{this.state.locationText}</h1>
+
                             <ul>
+                                {/* {this.state.population ? <li>State: {this.state.stateName}</li> : ""}
+                                {this.state.population ? <li>Location: ({this.state.latitude}, {this.state.longitude})</li> : ""} */}
+
                                 <li>State: {this.state.stateName}</li>
                                 <li>Location: ({this.state.latitude}, {this.state.longitude})</li>
-                                <li>Population (estimated): {this.state.population}</li>
-                                <li>Total Wages: {this.state.wages}</li>
+
+                                {/* Ternary since some zipcodes were working but had no data for population and wages*/}
+                                {this.state.population ? <li>Population (estimated): {this.state.population}</li> : ""}
+                                {this.state.wages ? <li>Total Wages: {this.state.wages}</li> : ""}
                             </ul>
+                            
                         </div>
                         // axios get condition was not met yet
                         : <p>Current Zipcode is providing no information</p>
