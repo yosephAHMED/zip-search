@@ -8,18 +8,19 @@ class ZipSearch extends Component {
     }
 
     componentDidMount() {
-        console.log(this.state.zipcode);
         axios.get("http://ctp-zip-api.herokuapp.com/zip/" + this.props.zipcode).then((response) => {
             const data = response.data;
 
+            console.log(data);
+
             const newZipSearchObj = {
-                stateName: data.State,
-                cityName: data.City,
-                locationText: data.LocationText,
-                latitude: data.Lat,
-                longitude: data.Long,
-                population: data.EstimatedPopulation,
-                wages: data.TotalWages,
+                stateName: data[0].State,
+                cityName: data[0].City,
+                locationText: data[0].LocationText,
+                latitude: data[0].Lat,
+                longitude: data[0].Long,
+                population: data[0].EstimatedPopulation,
+                wages: data[0].TotalWages,
             };
 
             this.setState({ zip: newZipSearchObj });
@@ -30,16 +31,16 @@ class ZipSearch extends Component {
     render() {
         let display;
         if (!this.state.zip) {
-            display = <p></p>;
+            display = <p>Not Found</p>;
         } else {
             display = (
                 <>
                     <h1>{this.state.locationText}</h1>
                     <ul>
-                        <li>State: {this.state.stateName}</li>
-                        <li>Location: ({this.state.latitude}, {this.state.longitude})</li>
-                        <li>Population (estimated): {this.state.population}</li>
-                        <li>Total Wages: {this.state.wages}</li>
+                        <li>State: {this.state.zip.stateName}</li>
+                        <li>Location: ({this.state.zip.latitude}, {this.state.zip.longitude})</li>
+                        <li>Population (estimated): {this.state.zip.population}</li>
+                        <li>Total Wages: {this.state.zip.wages}</li>
                     </ul>
                 </>
             );
