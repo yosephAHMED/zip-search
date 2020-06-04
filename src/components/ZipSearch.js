@@ -4,7 +4,13 @@ import axios from "axios";
 class ZipSearch extends Component {
     constructor() {
         super();
-        this.state = {
+        this.state = this.initialState;
+
+        this.handleChange = this.handleChange.bind(this);
+    }
+
+    get initialState() {
+        return {
             // variables that we will assign from API
             zipCode: "",
             stateName: "",
@@ -18,8 +24,11 @@ class ZipSearch extends Component {
             // showInfo is used in conditional rendering
             showInfo: false,
         };
+    }
 
-        this.handleChange = this.handleChange.bind(this);
+    // can be used to reset all variables to initial state
+    resetState() {
+        this.setState(this.initialState);
     }
 
     handleChange(event) {
@@ -29,7 +38,10 @@ class ZipSearch extends Component {
 
     componentDidUpdate() {
         if (this.state.zipCode.length !== 5) {
-            // do nothing when zipCode is not 5 characters long (for performance)
+            // when zipcode is not 5 numbers long, check if we are displaying any information
+            // if we are displaying, stop it by setting conditional rendering variable to false
+            if (this.state.showInfo === true)
+                this.setState({showInfo: false});
         } 
         else {    
             // when zipCode input is 5 characters, run the request
