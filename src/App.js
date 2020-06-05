@@ -8,9 +8,6 @@ class App extends Component {
 		return (
 			<div>
 				<ZipSearch zipcode="10310"/>
-				<ZipSearch zipcode="10002" />
-				<ZipSearch zipcode="11220" />
-				<ZipSearch zipcode="666666" />
 			</div>
 		);
 	}
