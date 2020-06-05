@@ -1,0 +1,39 @@
+.zipcode_input {
+    /* line up zipcode input box with the heading above it */
+    margin-left: 200px;
+    margin-top: 12px;
+}
+
+.p_info {
+    /* line up zipcode not providing info error with text above it */
+    margin-left: 131px;
+    padding-top: 15px;
+    font-weight: bold;
+    animation:blinkingText 1.2s infinite;
+} /* Cool blinking text ;) */
+@keyframes blinkingText{
+    0%{     color: white;    }
+    49%{    color: white; }
+    60%{    color: red; }
+    99%{    color: red;  }
+    100%{   color: white;    }
+}
+
+.locationInfo h1 {
+    color: red;
+    margin-left: 25px;
+    padding-top: 20px;
+}
+
+.locationInfo ul {
+    /* Add a cool border around the zipcode information */
+    border: solid white 1px;
+    width: 50%;
+    padding: 15px;
+    margin-left: 22px;
+}
+
+.locationInfo ul li {
+    /* Get rid of ugly bullet points */
+    list-style-type: none;
+}

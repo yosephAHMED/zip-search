@@ -1,5 +1,9 @@
 import React, { Component } from "react";
 import axios from "axios";
+import './zipsearch.css';
+
+// bootstrap import below is messing up styling on index
+//import 'bootstrap/dist/css/bootstrap.min.css';
 
 class ZipSearch extends Component {
     constructor() {
@@ -72,8 +76,7 @@ class ZipSearch extends Component {
     render() {
         return (
             <>
-                <div className="zipcode">
-                    <h2>Zipcode</h2>
+                <div>
                 </div>
 
                 {/* User input box for zipcode. Each entry triggers a state change */}
@@ -86,10 +89,10 @@ class ZipSearch extends Component {
                     onChange={this.handleChange.bind(this)}
                 />
 
-                <div className="locationInfo">
+                <div className="locationInfo_container">
                     {/* if axios got the data then the information will be displayed, otherwise hide the li info */}
                     {this.state.showInfo ?
-                        <div>
+                        <div className="locationInfo">
                             <h1>{this.state.locationText}</h1>
 
                             <ul>
@@ -106,7 +109,7 @@ class ZipSearch extends Component {
                             
                         </div>
                         // axios get condition was not met yet
-                        : <p>Current Zipcode is providing no information</p>
+                        : <p className="p_info">Current zipcode is providing no information</p>
                     }
                 </div>
 
